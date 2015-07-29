@@ -60,25 +60,24 @@ function currentPulse() {
   var sum = sumOfResponses();
 
   if(sum == 0) {
-    return "green"
+    return "green";
   } else if(sum == 1) {
-    return "yellow"
+    return "yellow";
   } else if(sum == 2) {
-    return "orange"
+    return "orange";
   } else if(sum >= 3) {
-    return "red"
+    return "red";
   }
 }
 
 io.sockets.on('connection', function (socket) {
   console.log('SERVER::WE ARE USING SOCKETS!');
 
-  socket.on('arrowPressed', function(data) {
-    if(tooMuchVotingFor(socket.id) {
-      console.log("Too much voting for", socket.id);
+  socket.on('arrowPressed', function(tag, device) {
+    if(tooMuchVotingFor(device) {
+      console.log("Too much voting for", device);
     } else {
-      var arrowPressed = data.arrow;
-      lastFiveResponses.shiftAndPush(parseInt(arrowPressed), socket.id);
+      lastFiveResponses.shiftAndPush(parseInt(tag), device);
       io.sockets.emit(currentPulse());
       io.sockets.emit("check");
     }
