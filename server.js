@@ -54,6 +54,7 @@ io.sockets.on('connection', function (socket) {
     lastFiveResponses.push(parseInt(tag));
 
     io.sockets.emit(currentPulse(), currentPulse());
+    io.sockets.emit("lastFiveResponses", lastFiveResponses);
 //      lastFiveResponses.shiftAndPush(parseInt(tag), device);
 //    }
   });
