@@ -74,12 +74,12 @@ io.sockets.on('connection', function (socket) {
   console.log('SERVER::WE ARE USING SOCKETS!');
 
   socket.on('arrowPressed', function(tag, device) {
-    if(tooMuchVotingFor(device) {
+    if(tooMuchVotingFor(device)) {
       console.log("Too much voting for", device);
     } else {
       lastFiveResponses.shiftAndPush(parseInt(tag), device);
       io.sockets.emit(currentPulse());
       io.sockets.emit("check");
     }
-  }
+  });
 });
