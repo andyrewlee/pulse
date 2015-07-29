@@ -75,11 +75,13 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('arrowPressed', function(tag, device) {
     io.sockets.emit("check", tag);
-    if(tooMuchVotingFor(device)) {
-      console.log("Too much voting for", device);
-    } else {
+//    if(tooMuchVotingFor(device)) {
+//      console.log("Too much voting for", device);
+//    } else {
+      lastFiveResponses.shift()
+      lastFiveResponses.push(tag);
       io.sockets.emit(currentPulse());
-      lastFiveResponses.shiftAndPush(parseInt(tag), device);
+//      lastFiveResponses.shiftAndPush(parseInt(tag), device);
     }
   });
 });
