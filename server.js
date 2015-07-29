@@ -82,6 +82,6 @@ io.sockets.on('connection', function (socket) {
       lastFiveResponses.push(tag);
       io.sockets.emit(currentPulse());
 //      lastFiveResponses.shiftAndPush(parseInt(tag), device);
-    }
+//    }
   });
 });
