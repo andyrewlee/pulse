@@ -78,8 +78,8 @@ io.sockets.on('connection', function (socket) {
     if(tooMuchVotingFor(device)) {
       console.log("Too much voting for", device);
     } else {
-      lastFiveResponses.shiftAndPush(parseInt(tag), device);
       io.sockets.emit(currentPulse());
+      lastFiveResponses.shiftAndPush(parseInt(tag), device);
     }
   });
 });
