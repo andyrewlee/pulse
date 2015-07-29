@@ -18,41 +18,13 @@ var server = app.listen(app.get('port'), function() {
 });
 
 var io = require('socket.io').listen(server);
-
 var lastFiveResponses = [0,0,0,0,0];
-var lastFiveRespondents = [null,null,null,null,null];
-
-function shiftAndPush(vote, socketId) {
-  lastFiveResponses.shift();
-  lastFiveRespondents.shift();
-
-  lastFiveResponses.push(vote);
-  lastFiveRespondents.push(socketId);
-}
-
-function tooMuchVotingFor(socketId) {
-  var count = 0;
-
-  for(var i=0; i<lastFiveRespondents.length; i++) {
-    if(lastFiveRespondents[i] == socketId) {
-      count++;
-    }
-  }
-
-  if(count > 2) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 function sumOfResponses() {
   var sum = 0;
-
   for(var i=0; i<lastFiveResponses.length; i++) {
     sum += lastFiveResponses[i];
   }
-
   return sum;
 }
 
@@ -78,10 +50,10 @@ io.sockets.on('connection', function (socket) {
 //    if(tooMuchVotingFor(device)) {
 //      console.log("Too much voting for", device);
 //    } else {
-      lastFiveResponses.shift()
-      lastFiveResponses.push(parseInt(tag));
+    lastFiveResponses.shift()
+    lastFiveResponses.push(parseInt(tag));
 
-      io.sockets.emit(currentPulse());
+    io.sockets.emit(currentPulse(), currentPulse());
 //      lastFiveResponses.shiftAndPush(parseInt(tag), device);
 //    }
   });
