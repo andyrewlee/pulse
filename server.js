@@ -79,7 +79,8 @@ io.sockets.on('connection', function (socket) {
 //      console.log("Too much voting for", device);
 //    } else {
       lastFiveResponses.shift()
-      lastFiveResponses.push(tag);
+      lastFiveResponses.push(parseInt(tag));
+
       io.sockets.emit(currentPulse());
 //      lastFiveResponses.shiftAndPush(parseInt(tag), device);
 //    }
