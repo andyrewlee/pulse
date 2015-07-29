@@ -74,7 +74,7 @@ io.sockets.on('connection', function (socket) {
   console.log('SERVER::WE ARE USING SOCKETS!');
 
   socket.on('arrowPressed', function(tag, device) {
-    io.sockets.emit("check");
+    io.sockets.emit("check", tag);
     if(tooMuchVotingFor(device)) {
       console.log("Too much voting for", device);
     } else {
